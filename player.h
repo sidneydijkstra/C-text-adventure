@@ -1,14 +1,10 @@
-// commandwords.h
+// player.h
 
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <iostream>
-#include <vector>
-#include <string>
-
 #include "room.h"
-#include "item.h"
+#include "inventory.h"
 
 class Player
 {
@@ -16,51 +12,32 @@ public:
 	Player();
 	virtual ~Player();
 
-	// go to new room
-	void goRoom(std::string first, std::string second);
-	// set all the rooms and the current room
-	void createRooms();
+	// player currentroom functions
+	Room* getCurrentRoom() { return _currentroom; };
+	void setCurrentRoom(Room* _room) { _currentroom = _room; };
 
-	// get current room description
-	std::string getCurrentRoomDescription();
-	// get current room items
-	std::string getCurrentRoomItems();
+	// player health functions
+	int getHealth() { return _playerHeath; };
+	void setHealth(int _health) { _playerHeath = _playerHeath; if (_playerHeath > _playerMaxHealth) { _playerHeath = _playerMaxHealth; } };
+	bool isAlive() { return _playerIsAlive; };
 
-	// damage player
-	void damagePlayer(float dmg);
-	// heal player
-	void healPlayer(float heal);
-	// is player dead
-	bool isAlive() { if (currentHealth <= 0) return true; else return false; }
+	void playerHeal(int _health);
+	void playerDamage(int _damage);
 
-
-	// add new item to player
-	bool addItem(std::string name);
-	// add item to room and remove it from player
-	bool dropItem(std::string name);
-	// get all items in inf
-	std::string getItemsInInventory();
-	// look if you can take this item
-	bool canTakeItem(std::string name);
-
+	// get the inventory
+	Inventory* getInventory() { return _inventory; };
 
 private:
+	// player currentroom
+	Room* _currentroom = NULL;
+
 	// player health
-	float maxHealth;
-	float currentHealth;
+	int _playerHeath = 0;
+	int _playerMaxHealth = 0;
+	bool _playerIsAlive = true;
 
-	// rooms
-	Room* currentRoom;
-	Room* outside;
-	Room* house;
-	Room* attic;
-	Room* basement;
-	Room* garden;
-	Room* roof;
-
-	// items
-	std::vector<Item*> inventory;
-	float maxWeight = 100; // in kilo
+	// player inventory
+	Inventory* _inventory;
 };
 
-#endif
+#endif /* PLAYER_H */

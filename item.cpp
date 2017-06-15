@@ -1,12 +1,12 @@
-
 #include "item.h"
 
-Item::Item(std::string name_, std::string description_, float weight_){
-	name = name_;
-	description = description_;
-	weight = weight_;
+// item constructor
+Item::Item(std::string _name, int _weight){
+	_itemName = _name;
+	_itemWeight = _weight;
 }
 
+// item deconstructor
 Item::~Item(){
 
 }

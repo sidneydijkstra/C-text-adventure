@@ -2,17 +2,14 @@
 
 #include "room.h"
 
-Room::Room(std::string desc)
-{
+Room::Room(std::string desc){
+	_inventory = new Inventory(0);
 	this->description = desc;
 }
 
-Room::~Room(){
-	// delete items
-	for (int i = 0; i < items.size(); i++)
-	{
-		delete items[i];
-	}
+Room::~Room()
+{
+
 }
 
 void Room::setExit(std::string direction, Room* neighbor)
@@ -28,7 +25,8 @@ Room* Room::getExit(std::string direction)
 	return NULL;
 }
 
-std::string Room::getExitString(){
+std::string Room::getExitString()
+{
 	std::string returnString = "Exits: ";
 	std::map<std::string,Room*>::iterator it = exits.begin();
 	while (it != exits.end()) {
@@ -39,32 +37,3 @@ std::string Room::getExitString(){
 
 	return returnString;
 }
-
-std::string Room::getItemString() {
-	std::string returnString = "Items: ";
-	for (int i = 0; i < items.size(); i++){
-		returnString += items[i]->getItemName() + " ";
-	}
-	if (items.size() == 0) {
-		returnString = "Nothing";
-	}
-	return returnString;
-}
-
-void Room::addItem(Item * item){
-	items.push_back(item);
-}
-
-Item* Room::takeItem(std::string name){
-	for (int i = 0; i < items.size(); i++){
-		if (items[i]->getItemName().compare(name) == 0) {
-			Item* item = items[i];
-			items.erase(items.begin() + i);
-			return item;
-		}
-	}
-	return NULL;
-}
-
-
-

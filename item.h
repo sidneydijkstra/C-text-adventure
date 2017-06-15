@@ -5,22 +5,21 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 
-class Item
-{
+class Item {
 public:
-	Item(std::string name_, std::string description_, float weight_);
+	Item(std::string _name, int _weight);
 	virtual ~Item();
 
-	// get item info
-	std::string getItemName() { return name; };
-	std::string getItemDescription() { return description; };
-	float getItemWeight() { return weight; };
+	// item use function
+	virtual void use() { std::cout << "you cant use this item!" << std::endl; };
+
+
+	int getItemWeight() { return _itemWeight; };
+	std::string getItemName() { return _itemName; };
 private:
-	std::string name;
-	std::string description;
-	float weight;
+	int _itemWeight;
+	std::string _itemName;
 };
 
-#endif
+#endif /* ITEM_H */

@@ -4,11 +4,10 @@
 #define ROOM_H
 
 #include <iostream>
-#include <map>
 #include <string>
-#include <vector>
+#include <map>
 
-#include "item.h"
+#include "inventory.h"
 
 class Room
 {
@@ -22,19 +21,14 @@ public:
 	std::string getLongDescription() { return "You are " + description + '\n' + getExitString(); }
 	std::string getExitString();
 
-	// get all items in room
-	std::string getItemString();
-
-	// add new item to room
-	void addItem(Item* item);
-	// remove item from room
-	Item* takeItem(std::string name);
+	// get the inventory
+	Inventory* getInventory() { return _inventory; };
 
 private:
 	std::string description;
 	std::map<std::string, Room*> exits;
 
-	std::vector<Item*> items;
+	Inventory* _inventory;
 };
 
 #endif /* ROOM_H */
