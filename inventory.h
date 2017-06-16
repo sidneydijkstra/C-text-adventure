@@ -7,7 +7,7 @@
 #include <map>
 #include <string>
 
-#include "item.h";
+#include "item.h"
 
 class Inventory{
 public:

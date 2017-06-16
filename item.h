@@ -14,10 +14,11 @@ public:
 	// item use function
 	virtual void use() { std::cout << "you cant use this item!" << std::endl; };
 
-
+	// get item weight and name
 	int getItemWeight() { return _itemWeight; };
 	std::string getItemName() { return _itemName; };
 private:
+	// some global item variables
 	int _itemWeight;
 	std::string _itemName;
 };

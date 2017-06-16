@@ -5,8 +5,8 @@
 
 #include "game.h"
 
-//#include "food.h"
-//#include "weapon.h"
+#include "food.h"
+#include "key.h"
 
 //  game constructor
 Game::Game(){
@@ -36,11 +36,21 @@ void Game::createRooms(){
 	lab = new Room("in a computing lab");
 	office = new Room("in the computing admin office");
 
-	Item* apple = new Item("apple", 10);
-	Item* handgun = new Item("handgun", 10);
-
+	// add food to outside
+	Food* apple = new Food(player, "apple", 10, 20);
 	outside->getInventory()->addItem("apple", apple);
-	outside->getInventory()->addItem("handgun", handgun);
+
+
+
+	// close the pub and add a key
+	Key* blueKey = new Key(player, "bluekey", 5);
+	pub->addOpenKey(blueKey);
+	pub->closeRoom();
+	lab->addOpenKey(blueKey);
+	lab->closeRoom();
+
+	// add key to outside
+	outside->getInventory()->addItem("bluekey", blueKey);
 
 	// initialise room exits
 	outside->setExit("east", theatre);
@@ -90,12 +100,17 @@ void Game::goRoom(Command cmd){
 	if (nextRoom == NULL) {
 		std::cout << "There is no door!" << std::endl;
 	} else {
-		// TEMP damage player on entering new room
-		player->playerDamage(10);
+		if (nextRoom->isOpen()) {
+			// TEMP damage player on entering new room
+			player->playerDamage(10);
 
-		// set new room
-		player->setCurrentRoom(nextRoom);
-		std::cout << player->getCurrentRoom()->getLongDescription() << std::endl;
+			// set new room
+			player->setCurrentRoom(nextRoom);
+			std::cout << player->getCurrentRoom()->getLongDescription() << std::endl;
+		}else {
+			// MESSAGE: door is closed
+			std::cout << "You cant go trough that door becaus its is closed" << std::endl;
+		}
 	}
 }
 

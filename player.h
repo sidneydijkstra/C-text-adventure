@@ -6,8 +6,7 @@
 #include "room.h"
 #include "inventory.h"
 
-class Player
-{
+class Player{
 public:
 	Player();
 	virtual ~Player();
