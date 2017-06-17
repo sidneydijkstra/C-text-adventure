@@ -14,60 +14,39 @@ Game::Game(){
 	this->createRooms();
 }
 
-// game deconstructor
-Game::~Game(){
-	// delete all the rooms
-	delete outside;
-	delete theatre;
-	delete pub;
-	delete lab;
-	delete office;
-
-	// delete player
-	delete player;
-}
-
 // create all the rooms
 void Game::createRooms(){
 	// create the rooms
-	outside = new Room("outside the main entrance of the university");
-	theatre = new Room("in a lecture theatre");
-	pub = new Room("in the campus pub");
-	lab = new Room("in a computing lab");
-	office = new Room("in the computing admin office");
-
-	// add food to outside
-	Food* apple = new Food(player, "apple", 10, 20);
-	outside->getInventory()->addItem("apple", apple);
-
-
-
-	// close the pub and add a key
-	Key* blueKey = new Key(player, "bluekey", 5);
-	pub->addOpenKey(blueKey);
-	pub->closeRoom();
-	lab->addOpenKey(blueKey);
-	lab->closeRoom();
-
-	// add key to outside
-	outside->getInventory()->addItem("bluekey", blueKey);
+	bedroom = new Room("in the bedroom where you woke up.");
+	closet = new Room("inside the closed. Why?");
+	hallway = new Room("in the hallway. No windows, strange.");
+	yard = new Room("in the yard its realy dark. So dark i can not even see the stars.");
 
 	// initialise room exits
-	outside->setExit("east", theatre);
-	outside->setExit("south", lab);
-	outside->setExit("up", pub);
+	bedroom->setExit("east", closet);
+	bedroom->setExit("south", hallway);
 
-	theatre->setExit("west", outside);
+	closet->setExit("west", bedroom);
 
-	pub->setExit("down", outside);
+	hallway->setExit("north", bedroom);
+	hallway->setExit("south", yard);
 
-	lab->setExit("north", outside);
-	lab->setExit("east", office);
+	yard->setExit("north", hallway);
 
-	office->setExit("west", lab);
+
+	// add food to bedroom
+	Food* apple = new Food(player, "apple", "A not so good looking apple.", 10, 20);
+	bedroom->getInventory()->addItem("apple", apple);
+
+
+	// close the yard
+	Key* yardkey = new Key(player, "yardkey", "A key that from the looks of it might open the door to the yard.", 5);
+	closet->getInventory()->addItem("yardkey", yardkey);
+	yard->addOpenKey(yardkey);
+	yard->closeRoom();
 
 	// set starting room
-	player->setCurrentRoom(outside);
+	player->setCurrentRoom(bedroom);
 }
 
 // main play function
@@ -101,9 +80,6 @@ void Game::goRoom(Command cmd){
 		std::cout << "There is no door!" << std::endl;
 	} else {
 		if (nextRoom->isOpen()) {
-			// TEMP damage player on entering new room
-			player->playerDamage(10);
-
 			// set new room
 			player->setCurrentRoom(nextRoom);
 			std::cout << player->getCurrentRoom()->getLongDescription() << std::endl;
@@ -129,8 +105,18 @@ bool Game::processCommand(Command cmd){
 		this->printHelp();
 	}
 	else if (commandWord.compare("look") == 0) {
-		std::cout << player->getCurrentRoom()->getLongDescription() << std::endl;
-		std::cout << rand() % 100000 << std::endl;
+		if (cmd.hasSecondWord()) {
+			// display info of item
+			if (player->getInventory()->getItem(cmd.getSecondWord()) != NULL) {
+				std::cout << player->getInventory()->getItem(cmd.getSecondWord())->getItemDescription() << std::endl;
+			}else {
+				// MESSAGE: not an item in inv
+				std::cout << "That is not an item in you bag." << std::endl;
+			}
+		}else {
+			// display description of room and exits
+			std::cout << player->getCurrentRoom()->getLongDescription() << std::endl;
+		}
 	}
 	else if (commandWord.compare("take") == 0) {
 		player->getInventory()->take(cmd.getSecondWord(), player->getCurrentRoom()->getInventory());
@@ -146,6 +132,14 @@ bool Game::processCommand(Command cmd){
 	}
 	else if (commandWord.compare("use") == 0) {
 		if (player->getInventory()->getItem(cmd.getSecondWord()) != NULL) player->getInventory()->getItem(cmd.getSecondWord())->use();
+	}
+	else if (commandWord.compare("stats") == 0) {
+		std::vector<std::string> _string = player->getPlayerStats();
+		std::cout << "--- stats ---" << std::endl;
+		for (int i = 0; i < _string.size(); i++) {
+			std::cout << _string[i] << std::endl;
+		}
+		std::cout << "--- ----- ---" << std::endl;
 	}
 	else if (commandWord.compare("go") == 0) {
 		this->goRoom(cmd);
@@ -175,4 +169,16 @@ void Game::printHelp(){
 	std::cout << std::endl;
 	std::cout << "Your command words are:" << std::endl;
 	parser.showCommands();
+}
+
+// game deconstructor
+Game::~Game() {
+	// delete all the rooms
+	delete bedroom;
+	delete closet;
+	delete hallway;
+	delete yard;
+
+	// delete player
+	delete player;
 }

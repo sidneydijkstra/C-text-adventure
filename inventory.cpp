@@ -105,6 +105,10 @@ std::string Inventory::getAllItemNames() {
 		++_iterator;
 	}
 
+	if (_string.compare("") == 0) {
+		return "nothing";
+	}
+
 	return _string;
 }
 

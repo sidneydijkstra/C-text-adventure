@@ -12,7 +12,7 @@
 
 class Key : public Item {
 public:
-	Key(Player* player, std::string name, int weight);
+	Key(Player* player, std::string name, std::string _description, int weight);
 	~Key();
 
 	// food use function

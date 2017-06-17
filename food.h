@@ -11,7 +11,7 @@
 
 class Food : public Item {
 public:
-	Food(Player* player, std::string name, int weight, int healAmount);
+	Food(Player* player, std::string name, std::string _description, int weight, int healAmount);
 	~Food();
 
 	// food use function

@@ -35,11 +35,10 @@ private:
 	Parser parser;
 
 	// rooms
-	Room* outside;
-	Room* theatre;
-	Room* pub;
-	Room* lab;
-	Room* office;
+	Room* bedroom; // room 1
+	Room* closet; // room 2 
+	Room* hallway; // room 3
+	Room* yard; // room 4
 };
 
 #endif /* GAME_H */

@@ -1,7 +1,7 @@
 #include "key.h"
 
 // food constructor
-Key::Key(Player* player, std::string name, int weight) : Item(name, weight) {
+Key::Key(Player* player, std::string name, std::string _description, int weight) : Item(name, _description, weight) {
 	_player = player;
 }
 

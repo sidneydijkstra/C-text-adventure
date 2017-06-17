@@ -8,7 +8,7 @@
 
 class Item {
 public:
-	Item(std::string _name, int _weight);
+	Item(std::string _name, std::string _description, int _weight);
 	virtual ~Item();
 
 	// item use function
@@ -17,10 +17,12 @@ public:
 	// get item weight and name
 	int getItemWeight() { return _itemWeight; };
 	std::string getItemName() { return _itemName; };
+	std::string getItemDescription() { return _itemDescription; };
 private:
 	// some global item variables
 	int _itemWeight;
 	std::string _itemName;
+	std::string _itemDescription;
 };
 
 #endif /* ITEM_H */

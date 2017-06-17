@@ -26,6 +26,9 @@ public:
 	// get the inventory
 	Inventory* getInventory() { return _inventory; };
 
+	// get stats string
+	std::vector<std::string> getPlayerStats();
+
 private:
 	// player currentroom
 	Room* _currentroom = NULL;

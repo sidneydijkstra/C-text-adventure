@@ -11,6 +11,7 @@ CommandWords::CommandWords()
 	validCommands.push_back("search");
 	validCommands.push_back("bag");
 	validCommands.push_back("use");
+	validCommands.push_back("stats");
 	validCommands.push_back("quit");
 	validCommands.push_back("help");
 }

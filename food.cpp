@@ -1,7 +1,7 @@
 #include "food.h"
 
 // food constructor
-Food::Food(Player* player, std::string name, int weight, int healAmount) : Item(name, weight) {
+Food::Food(Player* player, std::string name, std::string _description, int weight, int healAmount) : Item(name, _description, weight) {
 	_player = player;
 	_heal = healAmount;
 }
