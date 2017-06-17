@@ -20,6 +20,9 @@ public:
 	Item* getItem(std::string _name) { if (_itemList.count(_name) > 0) return _itemList[_name]; else return NULL; };
 	std::string getAllItemNames();
 
+	// check if item is in inv
+	bool hasItem(std::string _name) { if (this->getItem(_name) != NULL) return true; else return false; };
+
 	// take someting from inv that you give
 	void take(std::string _name, Inventory* _inventory);
 	// drop a item if inv can get item

@@ -10,12 +10,14 @@
 
 #include "inventory.h"
 #include "item.h"
+#include "person.h"
 
 class Room{
 public:
 	Room(std::string desc);
 	virtual ~Room();
 
+	// ************ room exits functions ************
 	// room exit set and get functions
 	void setExit(std::string direction, Room* neighbor);
 	Room* getExit(std::string direction);
@@ -25,9 +27,11 @@ public:
 	std::string getLongDescription() { return "You are " + _description + '\n' + getExitString(); }
 	std::string getExitString();
 
+	// ************ room inventory functions ************
 	// get the inventory
 	Inventory* getInventory() { return _inventory; };
 
+	// ************ room key functions ************
 	// door open and close functions
 	bool isOpen() { return _isOpen; };
 	void closeRoom() { _isOpen = false; };
@@ -38,6 +42,13 @@ public:
 
 	// check if can open door then open door
 	void canOpen(Item* _key);
+
+	// ************ room person functions ************
+	void addPerson(Person* _person) { _persons.push_back(_person); };
+	void removePerson(Person* _person) { for (int i = 0; i < _persons.size(); i++){ if (_persons[i] == _person) { _persons.erase(_persons.begin() + i); delete _person; break; } } };
+
+	std::vector<Person*> getAllPersons() { return _persons; };
+	Person* getPerson(std::string _name) { for (int i = 0; i < _persons.size(); i++) { if (_name == _persons[i]->getPresonName()) { return _persons[i]; break; } } };
 private:
 	// room description and exits
 	std::string _description;
@@ -49,6 +60,9 @@ private:
 	// key variables
 	bool _isOpen = true;
 	std::vector<Item*> _keys;
+	
+	// person veriables
+	std::vector<Person*> _persons;
 };
 
 #endif /* ROOM_H */

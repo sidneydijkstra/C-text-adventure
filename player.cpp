@@ -12,25 +12,25 @@ Player::Player(){
 void Player::playerHeal(int _health){
 	_playerHeath += _health;	
 	
-	// player heal message
-	std::cout << "You got health for: " << _health << " hp! Your new health is: " << _playerHeath << " hp." << std::endl;
-
 	if (_playerHeath > _playerMaxHealth) {
 		_playerHeath = _playerMaxHealth;		
 	}
+
+	// player heal message
+	std::cout << "You got health for: " << _health << " hp! Your new health is: " << _playerHeath << " hp." << std::endl;
 }
 
 // damage player
 void Player::playerDamage(int _damage){
 	_playerHeath -= _damage;
 
-	// player damage message
-	std::cout << "You got damage for: " << _damage << " hp! Your new health is: " << _playerHeath << " hp." << std::endl;
-
 	if (_playerHeath <= 0) {
 		_playerHeath = 0;
 		_playerIsAlive = false;
 	}
+
+	// player damage message
+	std::cout << "You got damage for: " << _damage << " hp! Your new health is: " << _playerHeath << " hp." << std::endl;
 }
 
 // get player stats in a string

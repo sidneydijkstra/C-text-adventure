@@ -43,6 +43,7 @@ Command Parser::getCommand() {
 
 	if(commands.isCommand(words[0])) {
 		// check words and return command
+		if (words.size() > 2) { return Command(words[0], words[1], words[2]); } // there is a second word
 		if (words.size() > 1) { return Command(words[0], words[1]); } // there is a second word
 		if (words.size() > 0) { return Command(words[0]); } // there is a single command word
 	}

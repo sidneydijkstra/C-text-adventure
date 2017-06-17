@@ -2,38 +2,44 @@
 
 #include "command.h"
 
-Command::Command(std::string first, std::string second)
-{
+Command::Command(std::string first, std::string second, std::string third){
 	this->commandWord = first;
 	this->secondWord = second;
+	this->thirdWord = third;
 }
 
-Command::~Command()
-{
+Command::~Command(){
 
 }
 
-std::string Command::getCommandWord()
-{
+std::string Command::getCommandWord(){
 	return this->commandWord;
 }
 
-bool Command::isUnknown()
-{
+bool Command::isUnknown(){
 	if (this->commandWord.compare("") == 0) {
 		return true;
 	}
 	return false;
 }
 
-std::string Command::getSecondWord()
-{
+std::string Command::getSecondWord(){
 	return this->secondWord;
 }
 
-bool Command::hasSecondWord()
-{
+bool Command::hasSecondWord(){
 	if (this->secondWord.compare("") == 0) {
+		return false;
+	}
+	return true;
+}
+
+std::string Command::getThirdWord(){
+	return this->thirdWord;
+}
+
+bool Command::hasThirdWord(){
+	if (this->thirdWord.compare("") == 0) {
 		return false;
 	}
 	return true;

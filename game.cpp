@@ -107,7 +107,7 @@ bool Game::processCommand(Command cmd){
 	else if (commandWord.compare("look") == 0) {
 		if (cmd.hasSecondWord()) {
 			// display info of item
-			if (player->getInventory()->getItem(cmd.getSecondWord()) != NULL) {
+			if (player->getInventory()->hasItem(cmd.getSecondWord())) {
 				std::cout << player->getInventory()->getItem(cmd.getSecondWord())->getItemDescription() << std::endl;
 			}else {
 				// MESSAGE: not an item in inv
@@ -131,7 +131,7 @@ bool Game::processCommand(Command cmd){
 		std::cout << "You look in your bag and find: " << player->getInventory()->getAllItemNames() << std::endl;
 	}
 	else if (commandWord.compare("use") == 0) {
-		if (player->getInventory()->getItem(cmd.getSecondWord()) != NULL) player->getInventory()->getItem(cmd.getSecondWord())->use();
+		if (player->getInventory()->hasItem(cmd.getSecondWord())) player->getInventory()->getItem(cmd.getSecondWord())->use();
 	}
 	else if (commandWord.compare("stats") == 0) {
 		std::vector<std::string> _string = player->getPlayerStats();
