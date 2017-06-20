@@ -49,7 +49,7 @@ std::string Room::getExitString(){
 
 // check if can open door then open door
 void Room::canOpen(Item* _key){
-	for each (Item* key in _keys){
+	for (Item* key : _keys){
 		if (key == _key) {
 			// MESSAGE: you can open door
 			std::cout << "You used your key and opend the door." << std::endl;
