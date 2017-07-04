@@ -1,4 +1,9 @@
-// player.h
+/**
+* @file player.h
+*
+* @brief The player header file.
+*
+*/
 
 #ifndef PLAYER_H
 #define PLAYER_H
@@ -6,40 +11,62 @@
 #include "room.h"
 #include "inventory.h"
 
+/**
+* @brief The Player class handels all the Player functions
+*/
 class Player{
 public:
-	Player();
-	virtual ~Player();
+	Player(); ///< @brief Constructor of the Player
+	virtual ~Player(); ///< @brief Destructor of the Player
 
-	// player currentroom functions
+	/// @brief get the current Room
+	/// @return Room
 	Room* getCurrentRoom() { return _currentroom; };
+
+	/// @brief set the current Room
+	/// @param the new Room
+	/// @return void
 	void setCurrentRoom(Room* _room) { _currentroom = _room; };
 
-	// player health functions
+	/// @brief get Player current health
+	/// @return int
 	int getHealth() { return _playerHeath; };
+
+	/// @brief set Player current health
+	/// @param health you want to set it to
+	/// @return void
 	void setHealth(int _health) { _playerHeath = _playerHeath; if (_playerHeath > _playerMaxHealth) { _playerHeath = _playerMaxHealth; } };
+
+	/// @brief get if Player  is alive
+	/// @return bool
 	bool isAlive() { return _playerIsAlive; };
 
+	/// @brief heal the player
+	/// @param heal amount
+	/// @return void
 	void playerHeal(int _health);
+
+	/// @brief damage the player
+	/// @param damage amount
+	/// @return void
 	void playerDamage(int _damage);
 
-	// get the inventory
+	/// @brief get the Inventory of the Player
+	/// @return Inventory
 	Inventory* getInventory() { return _inventory; };
 
-	// get stats string
+	/// @brief get the Player stats
+	/// @return std::string
 	std::vector<std::string> getPlayerStats();
 
 private:
-	// player currentroom
-	Room* _currentroom = NULL;
+	Room* _currentroom = NULL; ///< @brief the current Room of the Player
 
-	// player health
-	int _playerHeath = 0;
-	int _playerMaxHealth = 0;
-	bool _playerIsAlive = true;
+	int _playerHeath = 0; ///< @brief health of the Player
+	int _playerMaxHealth = 0; ///< @brief max health of the Player
+	bool _playerIsAlive = true; ///< @brief is the player alive
 
-	// player inventory
-	Inventory* _inventory;
+	Inventory* _inventory; ///< @brief the Inventory of the Player
 };
 
 #endif /* PLAYER_H */

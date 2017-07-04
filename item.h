@@ -1,4 +1,9 @@
-// item.h
+/**
+* @file item.h
+*
+* @brief The item header file.
+*
+*/
 
 #ifndef ITEM_H
 #define ITEM_H
@@ -8,28 +13,44 @@
 
 class Player;
 
+/**
+* @brief The Item class handels all the main fucntions for a Item
+*/
 class Item {
 public:
+	/// @brief Constructor of the Item
+	/// @param the name of the item
+	/// @param the description of the item
+	/// @param the weight of the item
+	/// @param the player pointer
 	Item(std::string _name, std::string _description, int _weight, Player* player);
-	virtual ~Item();
+	virtual ~Item(); ///< @brief Destructor of the Item
 
-	// item use function
+	/// @brief the use fucntion for the item
+	/// @return void
 	virtual void use() { std::cout << "you cant use this item!" << std::endl; };
 
-	// get item weight and name
+	/// @brief get the item weight
+	/// @return int
 	int getItemWeight() { return _itemWeight; };
+
+	/// @brief get the item name
+	/// @return std::string
 	std::string getItemName() { return _itemName; };
+
+	/// @brief get the item description
+	/// @return std::string
 	std::string getItemDescription() { return _itemDescription; };
 
-	// get player
+	/// @brief get the player
+	/// @return Player
 	Player* getPlayer() { return _player; };
 private:
-	// some global item variables
-	int _itemWeight;
-	std::string _itemName;
-	std::string _itemDescription;
+	int _itemWeight; ///< @brief the item weight
+	std::string _itemName; ///< @brief the item name
+	std::string _itemDescription; ///< @brief the item description
 
-	Player* _player;
+	Player* _player; ///< @brief the player pointer
 };
 
 #endif /* ITEM_H */
