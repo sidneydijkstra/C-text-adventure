@@ -35,6 +35,16 @@ public:
 	/// @return bool
 	bool isAlive() { return _personIsAlive; };
 
+	/// @brief heal the Person
+	/// @param heal amount
+	/// @return void
+	void personHeal(int _health);
+
+	/// @brief damage the Person
+	/// @param damage amount
+	/// @return void
+	void personDamage(int _damage);
+
 	/// @brief get the name of the person
 	/// @return std::string
 	std::string getPersonName() { return _personName; };

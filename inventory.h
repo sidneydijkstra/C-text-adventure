@@ -40,9 +40,9 @@ public:
 	/// @return item
 	Item* getItem(std::string _name) { if (_itemList.count(_name) > 0) return _itemList[_name]; else return NULL; };
 
-	/// @brief get all the names of the items in this inventory
-	/// @return std::string
-	std::string getAllItemNames();
+	/// @brief print all the items in this Inventory
+	/// @return void
+	void printAllItemNames();
 
 	/// @brief check if inventory has item
 	/// @param name of the item

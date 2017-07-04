@@ -84,5 +84,8 @@ Person * Room::getPerson(std::string _name){
 
 // room deconstructor
 Room::~Room() {
-
+	// delete persons
+	for (size_t i = 0; i < _persons.size(); i++){
+		delete _persons[i];
+	}
 }

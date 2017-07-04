@@ -35,7 +35,7 @@ public:
 	/// @brief set Player current health
 	/// @param health you want to set it to
 	/// @return void
-	void setHealth(int _health) { _playerHeath = _playerHeath; if (_playerHeath > _playerMaxHealth) { _playerHeath = _playerMaxHealth; } };
+	void setHealth(int _health);
 
 	/// @brief get if Player  is alive
 	/// @return bool
@@ -55,9 +55,9 @@ public:
 	/// @return Inventory
 	Inventory* getInventory() { return _inventory; };
 
-	/// @brief get the Player stats
-	/// @return std::string
-	std::vector<std::string> getPlayerStats();
+	/// @brief print player stats
+	/// @return void
+	void printPlayerStats();
 
 private:
 	Room* _currentroom = NULL; ///< @brief the current Room of the Player

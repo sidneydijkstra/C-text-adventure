@@ -8,6 +8,18 @@ Player::Player(){
 	_playerHeath = _playerMaxHealth;
 }
 
+void Player::setHealth(int _health){
+	_playerHeath = _health;
+	if (_playerHeath > _playerMaxHealth) { 
+		_playerHeath = _playerMaxHealth; 
+	}
+
+	if (_playerHeath <= 0) {
+		_playerHeath = 0;
+		_playerIsAlive = false;
+	}
+}
+
 // heal player
 void Player::playerHeal(int _health){
 	_playerHeath += _health;	
@@ -34,13 +46,12 @@ void Player::playerDamage(int _damage){
 }
 
 // get player stats in a string
-std::vector<std::string> Player::getPlayerStats(){
-	std::vector<std::string> _string;
+void Player::printPlayerStats(){
+	std::cout << "--- stats ---" << std::endl;
 
-	_string.push_back("hp:     " + std::to_string(_playerHeath));
-	//_string.push_back("max hp: " + std::to_string(_playerMaxHealth));
+	std::cout << "hp:     " << std::to_string(_playerHeath) << std::endl;
 
-	return _string;
+	std::cout << "--- ----- ---" << std::endl;
 }
 
 // player deconstructor

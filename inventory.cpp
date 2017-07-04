@@ -96,7 +96,7 @@ bool Inventory::canDropItem(Item * _item){
 }
 
 // get all the names of items
-std::string Inventory::getAllItemNames() {
+void Inventory::printAllItemNames() {
 	std::string _string;
 
 	std::map<std::string, Item*>::iterator _iterator = _itemList.begin();
@@ -106,10 +106,10 @@ std::string Inventory::getAllItemNames() {
 	}
 
 	if (_string.compare("") == 0) {
-		return "nothing";
+		_string =  "nothing";
 	}
 
-	return _string;
+	std::cout << _string << std::endl;
 }
 
 // inventory deconstructor

@@ -7,6 +7,7 @@
 
 #include "food.h"
 #include "key.h"
+#include "person.h"
 
 //  game constructor
 Game::Game(){
@@ -33,6 +34,8 @@ void Game::createRooms(){
 
 	yard->setExit("north", hallway);
 
+	// add a person to a room
+	bedroom->addPerson(new Person("Bob", 100));
 
 	// add food to bedroom
 	Food* apple = new Food(player, "apple", "A not so good looking apple.", 10, 20);
@@ -125,27 +128,23 @@ bool Game::processCommand(Command cmd){
 		player->getInventory()->drop(cmd.getSecondWord(), player->getCurrentRoom()->getInventory());
 	}
 	else if (commandWord.compare("search") == 0) {
-		std::cout << "You look around and find: " << player->getCurrentRoom()->getInventory()->getAllItemNames() << std::endl;
+		std::cout << "You look around and find: ";
+		player->getCurrentRoom()->getInventory()->printAllItemNames();
 	}
 	else if (commandWord.compare("bag") == 0) {
-		std::cout << "You look in your bag and find: " << player->getInventory()->getAllItemNames() << std::endl;
+		std::cout << "You look in your bag and find: ";
+		player->getInventory()->printAllItemNames();
 	}
 	else if (commandWord.compare("use") == 0) {
 		if (player->getInventory()->hasItem(cmd.getSecondWord())) player->getInventory()->getItem(cmd.getSecondWord())->use();
 	}
 	else if (commandWord.compare("stats") == 0) {
-		std::vector<std::string> _string = player->getPlayerStats();
-		std::cout << "--- stats ---" << std::endl;
-		for (int i = 0; i < _string.size(); i++) {
-			std::cout << _string[i] << std::endl;
-		}
-		std::cout << "--- ----- ---" << std::endl;
+		player->printPlayerStats();
 	}
 	else if (commandWord.compare("go") == 0) {
 		this->goRoom(cmd);
 	} 
 	else if (commandWord.compare("quit") == 0) {
-		//wantToQuit = quit(command);
 		wantToQuit = true;
 	}
 
