@@ -19,9 +19,6 @@ public:
 private:
 	// heal amount
 	int _heal = 0;
-
-	// player
-	Player* _player;
 };
 
 #endif /* FOOD_H */

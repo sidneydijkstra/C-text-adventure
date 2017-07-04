@@ -1,21 +1,31 @@
-// preson.h
+// person.h
 
-#ifndef PRESON_H
-#define PRESON_H
+#ifndef PERSON_H
+#define PERSON_H
 
 #include <iostream>
 #include <string>
 
 class Person {
 public:
-	Person(std::string _name);
+	Person(std::string name, int maxHealth);
 	virtual ~Person();
 
-	// get item weight and name
-	std::string getPresonName() { return _personName; };
+	// player health functions
+	int getHealth() { return _personHealth; };
+	void setHealth(int _health);
+	bool isAlive() { return _personIsAlive; };
+
+	// get person name
+	std::string getPersonName() { return _personName; };
 private:
-	// some global item variables
+	// some global player variables
 	std::string _personName;
+
+	// player health
+	int _personHealth = 0;
+	int _personMaxHealth = 0;
+	bool _personIsAlive = true;
 };
 
-#endif /* PRESON_H */
+#endif /* PERSON_H */

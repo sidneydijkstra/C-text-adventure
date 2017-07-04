@@ -45,10 +45,10 @@ public:
 
 	// ************ room person functions ************
 	void addPerson(Person* _person) { _persons.push_back(_person); };
-	void removePerson(Person* _person) { for (int i = 0; i < _persons.size(); i++){ if (_persons[i] == _person) { _persons.erase(_persons.begin() + i); delete _person; break; } } };
+	void removePerson(Person* _person);
 
 	std::vector<Person*> getAllPersons() { return _persons; };
-	Person* getPerson(std::string _name) { for (int i = 0; i < _persons.size(); i++) { if (_name == _persons[i]->getPresonName()) { return _persons[i]; break; } } };
+	Person* getPerson(std::string _name);
 private:
 	// room description and exits
 	std::string _description;

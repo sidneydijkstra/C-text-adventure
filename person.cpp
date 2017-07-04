@@ -1,10 +1,19 @@
 #include "person.h"
 
-// preson constructor
-Person::Person(std::string _name){
+// person constructor
+Person::Person(std::string _name, int maxHealth){
 	_personName = _name;
 }
 
-// preson deconstructor
-Person::~Person(){
+
+
+void Person::setHealth(int _health){
+	_personHealth = _health;
+	if (_personHealth > _personMaxHealth) {
+		_personHealth = _personMaxHealth;
+	}
+}
+
+// person deconstructor
+Person::~Person() {
 }

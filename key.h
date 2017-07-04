@@ -18,9 +18,6 @@ public:
 	// food use function
 	void use();
 private:
-
-	// player
-	Player* _player;
 };
 
 #endif /* KEY_H */

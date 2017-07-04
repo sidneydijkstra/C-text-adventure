@@ -1,13 +1,12 @@
 #include "key.h"
 
 // food constructor
-Key::Key(Player* player, std::string name, std::string _description, int weight) : Item(name, _description, weight) {
-	_player = player;
+Key::Key(Player* player, std::string name, std::string _description, int weight) : Item(name, _description, weight, player) {
 }
 
 // key use function
 void Key::use() {
-	std::vector<Room*> _rooms = _player->getCurrentRoom()->getClosedRooms();
+	std::vector<Room*> _rooms = getPlayer()->getCurrentRoom()->getClosedRooms();
 
 	if (!_rooms.empty()) {
 		for (int i = 0; i < _rooms.size(); i++){

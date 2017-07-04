@@ -45,4 +45,6 @@ std::vector<std::string> Player::getPlayerStats(){
 
 // player deconstructor
 Player::~Player() {
+	// delete inventoy
+	delete _inventory;
 }

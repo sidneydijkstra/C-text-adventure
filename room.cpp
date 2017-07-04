@@ -62,6 +62,26 @@ void Room::canOpen(Item* _key){
 	std::cout << "You do not have the right key." << std::endl;
 }
 
+void Room::removePerson(Person * _person){
+	for (int i = 0; i < _persons.size(); i++) {
+		if (_persons[i] == _person) { 
+			_persons.erase(_persons.begin() + i);
+			delete _person; 
+			break; 
+		} 
+	}
+}
+
+Person * Room::getPerson(std::string _name){
+	for (int i = 0; i < _persons.size(); i++) { 
+		if (_name == _persons[i]->getPersonName()) {
+			return _persons[i]; 
+			break; 
+		} 
+	}
+	return NULL;
+}
+
 // room deconstructor
 Room::~Room() {
 
